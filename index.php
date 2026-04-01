@@ -1,11 +1,3 @@
-<?php
-    require __DIR__ . '/vendor/autoload.php';
-
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-    $dotenv->load();
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,12 +26,20 @@
 
     <!-- LOGIN -->
     <div class="w-screen min-h-screen flex items-center justify-center">
-        <form action="login.php" method="post" name="login" class="flex flex-col items-center gap-2 w-90 ">
+        <form action="report.php" method="get" name="login" class="flex flex-col items-center gap-2 w-90 ">
             <p>Nama</p>
-            <input type="text" placeholder="Type here" class="input" />
+            <input type="text" placeholder="Ketik Disini" class="input" />
             <p>Kelas</p>
             <div class="w-full max-w-xs">
-                <input type="range" min="0" max="100" value="1" class="range" step="12.5" />
+                <input type="range" min="0" max="20" value="1" class="range" step="10" />
+                <div class="flex justify-between px-2.5 mt-2 text-xs">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                </div>
+            </div>
+            <div class="w-full max-w-xs">
+                <input type="range" min="0" max="80" value="1" class="range" step="10" />
                 <div class="flex justify-between px-2.5 mt-2 text-xs">
                     <span>A</span>
                     <span>B</span>
