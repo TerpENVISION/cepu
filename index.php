@@ -43,8 +43,8 @@
                     <?php
                         for ($x = 1; $x <= $jummlahhkelas; $x++) {
                             echo '<span>' . $x . '</span>';
-                        }
-                    ?>
+                            }
+                            ?>
                 </div>
             </div>
             <div class="w-full max-w-xs">
@@ -54,9 +54,17 @@
                         for ($i = 1; $i <= $jummlahsubkelas; $i++) {
                             $huruf = chr(64 + $i);
                             echo '<span>' . $huruf . '</span>';
-                        }
-                    ?>
+                            }
+                            ?>
                 </div>
+            </div>
+            <p>Lokasi</p>
+            <div class="w-full max-w-xs">
+                <img src="./assets/map/placeholder.webp" alt="map">
+                <input type="radio" name="gender"
+                <?php if (isset($gender) && $gender=="1") echo "checked";?>
+                value="female">1
+
             </div>
             <button class="btn bg-cepusec text-white border-none text-xl text-shadow-md hover:bg-cepuhov shadow-none mt-15" onclick="">Lapor</button>
         </form>
