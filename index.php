@@ -25,13 +25,39 @@
 <body class="min-h-screen flex flex-col items-center justify-center bg-background">
     <?php 
         include './components/nav.php';
-        $jummlahsubkelas = 9;
-        $jummlahhkelas = 3;
+        include "./db.php";
+
+        
+        $sql = "SELECT id, schoolname, class, subclass FROM data WHERE id=1";
+        $result = $mysqli->query($sql);
+
+
+
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                for ($i = 1; $i <= $row["subclass"]; $i++) {
+                    $subclass = chr(64 + $i);
+                }
+                // echo $row["schoolname"] . "1-" . $row["class"] . " - " . "A-" . $subclass;
+                // conver variable
+                $schoolname = $row["schoolname"];
+                $class = $row["class"];
+                $subclassint = $row["subclass"];
+            }
+            // echo "</table>";
+        } else {
+            echo "0 results";
+        }
+
+        $jummlahhkelas = $class;
+        $jummlahsubkelas = $subclassint;
+
     ?>
 
     <!-- LOGIN -->
     <div class="w-300px min-h-50vh flex flex-col items-center justify-center bg-white rounded-sm p-10 shadow-[10px_7px_13px_2px_rgba(0,_0,_0,_0.1)]">
-        <h1 class="text-[24pt] font-bold">SMPN 17 MALANG</h1>
+        <h1 class="text-[24pt] font-bold"><?php echo $schoolname; ?></h1>
         <h1 class="text-[20pt] font-semibold mb-3">Lapor</h1>
         <form action="report.php" method="get" name="login" class="flex flex-col items-center gap-2 w-90 ">
             <p>Nama</p>

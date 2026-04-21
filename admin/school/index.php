@@ -11,7 +11,7 @@ if ($_SESSION['role'] != 1) {
 
 
 
-$sql = "SELECT id, schoolname, class, subclass FROM data";
+$sql = "SELECT id, schoolname, class, subclass FROM data WHERE id=1";
 $result = $mysqli->query($sql);
 
 
@@ -26,7 +26,7 @@ if ($result->num_rows > 0) {
         $schoolname = $row["schoolname"];
         $class = $row["class"];
     }
-    echo "</table>";
+    // echo "</table>";
 } else {
     echo "0 results";
 }
@@ -63,7 +63,7 @@ $jummlahsubkelas = 26;
 
 <body class="min-h-screen flex flex-col items-center justify-center bg-white"></body>
 <h1 class="font-bold text-4xl">
-    <?php echo ucwords("Selamat datang " . $_SESSION['username']); ?>
+    <?php echo ucwords("Selamat datang, " . $_SESSION['username']); ?>
 </h1>
 <div class="flex flex-row items-start">
 
@@ -90,14 +90,14 @@ $jummlahsubkelas = 26;
         <img src="../../assets/map/placeholder.webp" alt="">
     </div>
 
-    <form action="welcome.php" method="post" class="w-170 flex flex-col items-center justify-center mt-5">
+    <form action="change.php" method="post" class="w-170 flex flex-col items-center justify-center mt-5">
         <p class="font-medium text-[20pt]">Ubah Dengan</p>
         Nama Sekolah <input type="text" name="name" class="input w-full max-w-xs"><br>
-        Kelas 1- <input type="number" name="class" max="99" class="input w-full max-w-xs"><br>
+        Kelas 1- <input type="number" name="class" min="1" max="99" class="input w-full max-w-xs"><br>
 
         <p>Kelas A-</p>
         <div class="w-full max-w-xs">
-            <input type="range" min="1" max="<?php echo $jummlahsubkelas; ?>" value="1" class="range" step="1" />
+            <input type="range" min="1" max="<?php echo $jummlahsubkelas; ?>" value="1" class="range" step="1" name="subclass"/>
             <div class="flex justify-between px-2.5 mt-2 text-xs">
                 <?php
                 for ($i = 1; $i <= $jummlahsubkelas; $i++) {
@@ -107,8 +107,22 @@ $jummlahsubkelas = 26;
                 ?>
             </div>
         </div>
+            <?php
+                if (isset($_GET["alert"])) {
+                    $alert = htmlspecialchars($_GET['alert']);
+                    if($alert == 'tooLong'){
+                        echo'Data Terlalu Panjang!';
+                    }   
+                    if($alert == 'tooShort'){
+                        echo'Data Terlalu Pendek!';
+                    }                  
+                    if($alert == 'notint'){
+                        echo'Tipe Data Kelas\SubKelas Bukan Integer!';
+                    }
+                }   
+            ?>
             <a href="./gantimap.php" class=" mt-15">Ubah Map</a>
-            <button class="btn bg-cepusec text-white border-none text-xl text-shadow-md hover:bg-cepuhov shadow-none mt-1" type="submit" value="SUBMIT" name="submit">Ubah</button>
+            <input class="btn bg-cepusec text-white border-none text-xl text-shadow-md hover:bg-cepuhov shadow-none mt-1" type="submit">
 
     </form>
 
