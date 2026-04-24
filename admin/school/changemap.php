@@ -51,6 +51,7 @@
 <body class="min-h-screen flex flex-col items-center justify-center bg-white"></body>
     <div class="w-120 flex flex-col items-center mt-5">
         <p class="font-medium text-[20pt]">Daftar Lokasi</p>
+        <a href="./" class=" mb-7">Kembali</a> 
         <img src="../../assets/map/map.webp" alt="" style="max-height: 500px;">
         <table class="table">
             <!-- head -->
@@ -65,28 +66,30 @@
             <tbody>
                 <!-- row 1 -->
 
+                <form method="post">
+                    <?php while($row = mysqli_fetch_assoc($result)) { ?>
+                    <tr>
+                        <td><?= $row['id']; ?></td>
+                        <td><?= $row['location']; ?></td>
+                        <!-- <td><input type="checkbox" name="delete" value=<?= $row['id']; ?>></td> -->
+                        <td><button type="submit" formaction="./deloc.php" name="delete" value="<?= $row['id']; ?>" style="cursor: pointer;">Hapus</button></td>
+                        <td><input type="radio" name="edit" value="<?= $row['id']; ?>"></td>
+                    </tr>
+                    <?php } ?>
 
-                <?php while($row = mysqli_fetch_assoc($result)) { ?>
-                <tr>
-                    <td><?= $row['id']; ?></td>
-                    <td><?= $row['location']; ?></td>
-                    <td><input type="checkbox" name="delete" value=<?= $row['id']; ?>></td>
-                    <td><input type="radio" name="edit" value="<?= $row['id']; ?>"></td>
-                </tr>
-                <?php } ?>
+                    <tr>
+                        <td></td>
+                        <td>Tambah Lokasi</td>
+                        <td></td>
+                        <!-- <td><input type="submit" value="hapus"></td> -->
+                        <td><input type="radio" name="edit" value="X"> Batal</td>
+                    </tr>
 
-                <tr>
-                    <td></td>
-                    <td>Tambah Lokasi</td>
-                    <td></td>
-                    <td><input type="radio" name="edit" value="X"> Batal</td>
-                </tr>
-                <form action="addloc.php" method="post">
                     <tr>
                         <td><input type="number" name="id" placeholder="ID" style="max-width: 40px;" max="99" min="1"></td>
                         <td><input type="text" name="name" placeholder="Nama Lokasi"></td>
-                        <td><input type="submit"></td>
-                        <td></td>
+                        <td><input type="submit" formaction="addloc.php" value="Tambah" style="cursor: pointer;"></td>
+                        <td><input type="submit" formaction="chaloc.php" value="Ubah" style="cursor: pointer;"></td>
                     </tr>
                 </form>
             </tbody>

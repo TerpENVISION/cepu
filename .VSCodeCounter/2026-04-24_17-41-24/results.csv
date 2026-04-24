@@ -1,0 +1,9 @@
+"filename", "language", "PHP", "comment", "blank", "total"
+"d:\laragon\www\admin\log\index.php", "PHP", 7, 0, 1, 8
+"d:\laragon\www\admin\school\addloc.php", "PHP", 17, 0, 11, 28
+"d:\laragon\www\admin\school\change.php", "PHP", 35, 0, 8, 43
+"d:\laragon\www\admin\school\changemap.php", "PHP", 83, 7, 21, 111
+"d:\laragon\www\admin\school\index.php", "PHP", 109, 3, 25, 137
+"d:\laragon\www\admin\school\logout.php", "PHP", 6, 2, 3, 11
+"d:\laragon\www\admin\school\upload.php", "PHP", 37, 5, 5, 47
+"Total", "-", 294, 17, 74, 385

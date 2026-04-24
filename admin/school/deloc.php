@@ -5,13 +5,11 @@
         header("location:../../login.php");
     }
 
-    $lokasi = ucwords($_POST["name"]);
-    $id = (int)$_POST["id"];
+    $id = (int)$_POST["delete"];
 
     include "../../db.php";
 
-    $sql = "INSERT INTO location (id, location)
-    VALUES ('$id', '$lokasi')";
+    $sql = "DELETE FROM `location` WHERE `location`.`id` = $id";
     
     if ($mysqli->query($sql) === true) {
         header("location:changemap.php");
