@@ -1,17 +1,14 @@
 <?php
 session_start();
-include "../../db.php";
 
 if ($_SESSION['role'] != 1) {
     header("location:../../login.php");
 }
 
-// echo ucwords("Selamat Datang Admin Sekolah, " . $_SESSION['username']);
-// echo "<br>";
+include "../../db.php";
 
 
-
-$sql = "SELECT id, schoolname, class, subclass FROM data WHERE id=1";
+$sql = "SELECT id, schoolname, class, subclass, locationimg FROM data WHERE id=1";
 $result = $mysqli->query($sql);
 
 
@@ -22,9 +19,10 @@ if ($result->num_rows > 0) {
             $subclass = chr(64 + $i);
         }
         // echo $row["schoolname"] . "1-" . $row["class"] . " - " . "A-" . $subclass;
-        // conver variable
+        // convert variable
         $schoolname = $row["schoolname"];
         $class = $row["class"];
+        $locationimg = $row["locationimg"];
     }
     // echo "</table>";
 } else {
@@ -65,6 +63,8 @@ $jummlahsubkelas = 26;
 <h1 class="font-bold text-4xl">
     <?php echo ucwords("Selamat datang, " . $_SESSION['username']); ?>
 </h1>
+<a href="./logout.php" class=" md-15">Log Out</a> 
+
 <div class="flex flex-row items-start">
 
     <!-- data -->
@@ -87,7 +87,7 @@ $jummlahsubkelas = 26;
             </tbody>
         </table>
         <p>MAP</p>
-        <img src="../../assets/map/placeholder.webp" alt="">
+        <img src="../../assets/map/map.webp" alt="">
     </div>
 
     <form action="change.php" method="post" class="w-170 flex flex-col items-center justify-center mt-5">
@@ -121,7 +121,7 @@ $jummlahsubkelas = 26;
                     }
                 }   
             ?>
-            <a href="./gantimap.php" class=" mt-15">Ubah Map</a>
+            <a href="./changemap.php" class=" mt-15">Ubah Map</a> 
             <input class="btn bg-cepusec text-white border-none text-xl text-shadow-md hover:bg-cepuhov shadow-none mt-1" type="submit">
 
     </form>

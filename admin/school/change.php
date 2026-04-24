@@ -1,4 +1,9 @@
 <?php
+    session_start();
+
+    if ($_SESSION['role'] != 1) {
+        header("location:../../login.php");
+    }
     $name = ucwords($_POST["name"]);
     $class = (int)$_POST["class"];
     $subclass = (int)$_POST["subclass"];

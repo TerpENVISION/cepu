@@ -28,7 +28,7 @@
         include "./db.php";
 
         
-        $sql = "SELECT id, schoolname, class, subclass FROM data WHERE id=1";
+        $sql = "SELECT id, schoolname, class, subclass, locationimg FROM data WHERE id=1";
         $result = $mysqli->query($sql);
 
 
@@ -44,6 +44,7 @@
                 $schoolname = $row["schoolname"];
                 $class = $row["class"];
                 $subclassint = $row["subclass"];
+                $locationimg = $row["locationimg"];
             }
             // echo "</table>";
         } else {
@@ -86,7 +87,7 @@
             </div>
             <p>Lokasi</p>
             <div class="w-full max-w-xs">
-                <img src="./assets/map/placeholder.webp" alt="map">
+                <img src="<?php echo $locationimg; ?>" alt="map">
                 <input type="radio" name="gender"
                 <?php if (isset($gender) && $gender=="1") echo "checked";?>
                 value="female">1
