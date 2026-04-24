@@ -5,13 +5,13 @@
         header("location:../../login.php");
     }
 
+    $id = (int)$_POST["edit"];
     $lokasi = ucwords($_POST["name"]);
-    $id = (int)$_POST["id"];
+    $newid = (int)$_POST["id"];
 
     include "../../db.php";
-
-    $sql = "INSERT INTO location (id, location)
-    VALUES ('$id', '$lokasi')";
+    
+    $sql = "UPDATE `location` SET `id` = '$newid', `location` = '$lokasi' WHERE `location`.`id` = $id;";
     
     if ($mysqli->query($sql) === true) {
         header("location:changemap.php");
