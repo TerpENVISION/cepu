@@ -13,7 +13,7 @@
 
     if ($result->num_rows > 0) {
     // while ($row = $result->fetch_assoc()) {
-    //     // convert variable
+    // convert variable
     //     $id = $row["id"];
     //     $location = $row["location"];
     // }
