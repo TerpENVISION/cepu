@@ -29,7 +29,9 @@
 
         
         $sql = "SELECT id, schoolname, class, subclass, locationimg FROM data WHERE id=1";
+        $loc = "SELECT id, location FROM location";
         $result = $mysqli->query($sql);
+        $resultloc = $mysqli->query($loc);
 
 
 
@@ -60,12 +62,12 @@
     <div class="w-300px min-h-50vh flex flex-col items-center justify-center bg-white rounded-sm p-10 shadow-[10px_7px_13px_2px_rgba(0,_0,_0,_0.1)]">
         <h1 class="text-[24pt] font-bold"><?php echo $schoolname; ?></h1>
         <h1 class="text-[20pt] font-semibold mb-3">Lapor</h1>
-        <form action="report.php" method="get" name="login" class="flex flex-col items-center gap-2 w-90 ">
+        <form action="report.php" method="post" name="login" class="flex flex-col items-center gap-2 w-90 ">
             <p>Nama</p>
-            <input type="text" placeholder="Ketik Disini" class="input" />
+            <input type="text" placeholder="Ketik Disini" class="input" name="name"/>
             <p>Kelas</p>
             <div class="w-full max-w-xs">
-                <input type="range" min="1" max="<?php echo $jummlahhkelas; ?>" value="1" class="range" step="1" />
+                <input type="range" min="1" max="<?php echo $jummlahhkelas; ?>" value="1" class="range" step="1" name="class"/>
                 <div class="flex justify-between px-2.5 mt-2 text-xs">
                     <?php
                         for ($x = 1; $x <= $jummlahhkelas; $x++) {
@@ -75,7 +77,7 @@
                 </div>
             </div>
             <div class="w-full max-w-xs">
-                <input type="range" min="1" max="<?php echo $jummlahsubkelas; ?>" value="1" class="range" step="1" />
+                <input type="range" min="1" max="<?php echo $jummlahsubkelas; ?>" value="1" class="range" step="1" name="subclass"/>
                 <div class="flex justify-between px-2.5 mt-2 text-xs">
                     <?php
                         for ($i = 1; $i <= $jummlahsubkelas; $i++) {
@@ -88,12 +90,13 @@
             <p>Lokasi</p>
             <div class="w-full max-w-xs">
                 <img src="<?php echo $locationimg; ?>" alt="map">
-                <input type="radio" name="gender"
-                <?php if (isset($gender) && $gender=="1") echo "checked";?>
-                value="female">1
+                
+                <?php while($row = mysqli_fetch_assoc($resultloc)) { ?>
+                        <input type="radio" name="location" value="<?= $row['id']; ?>"> <?php echo $row['id'], '. ', $row['location']?>
+                <?php } ?>
 
             </div>
-            <button class="btn bg-cepusec text-white border-none text-xl text-shadow-md hover:bg-cepuhov shadow-none mt-15" onclick="">Lapor</button>
+            <button class="btn bg-cepusec text-white border-none text-xl text-shadow-md hover:bg-cepuhov shadow-none mt-15" type="submit">Lapor</button>
         </form>
     </div>
 

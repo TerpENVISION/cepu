@@ -1,30 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Cepu</title>
-    
-    <!-- tailwind -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    
-    <!-- daisy UI -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    
-    <!-- tailwind custom -->
-    <style type="text/tailwindcss">
-        @theme {
-            --color-cepuprim: #2446CC;
-            --color-cepusec: #3657db;
-            --color-cepuhov: #1d39ad;
-            --color-background: #d9e5ff;
-        }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col items-center justify-center bg-background"></body>
+<?php
 
-    <!-- daisyUI -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</body>
-</html>
+    $name = ucwords($_POST["name"]);
+    $class = ($_POST["class"]);
+    $subclass = ($_POST["subclass"]);
+    $lokasi = ($_POST["location"]);
+    $clientdata = $_SERVER['HTTP_USER_AGENT'];
+    // $clientip = $_SERVER['REMOTE_ADDR'];
+    $ipinfo = file_get_contents("https://ipinfo.io/json");
+    $ipraw = json_decode($ipinfo, true);
+
+    $clientip = $ipraw["ip"] . " " . $ipraw["city"] . " " . $ipraw["region"] . " " . $ipraw["loc"] . " " . $ipraw["org"] . " " . $ipraw["timezone"];
+
+
+
+    // echo $name .' '. $class .' '. $subclass .' '. $lokasi .' '. $clientip['ip'] .' '. $clientdata;
+    
+    include "db.php";
+
+    $sql = "INSERT INTO `log` (`id`, `datetime`, `name`, `class1`, `class2`, `location`, `ip`, `browser`) VALUES (NULL, CURRENT_TIMESTAMP, '$name', '$class', '$subclass', '$lokasi', '$clientip', '$clientdata')";
+    
+    if ($mysqli->query($sql) === true) {
+        header("location:/");
+    } else {
+    }
+    
+    $mysqli->close();
+
+
+
+?>
