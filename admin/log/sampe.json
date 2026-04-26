@@ -1,0 +1,32 @@
+[
+    {
+        "data": [
+            {
+                "id": "1",
+                "datetime": "2026-04-25 13:18:04",
+                "name": "Tes Ini Data Manipulasi!",
+                "class1": "2",
+                "class2": "4",
+                "location": "2",
+                "ip": "114.79.18.171 Surabaya East Java -7.2492,112.7508 AS18004 PT WIRELESS INDONESIA ( WIN ) Asia\/Jakarta",
+                "browser": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/147.0.0.0 Safari\/537.36"
+            }
+        ],
+        "location": "2. Tangga Timur",
+        "class": "2-D"
+    },
+    {
+        "data": {
+            "id": "1",
+            "datetime": "2026-04-25 13:18:04",
+            "name": "Tes Ini Data Manipulasi!",
+            "class1": "2",
+            "class2": "4",
+            "location": "2",
+            "ip": "114.79.18.171 Surabaya East Java -7.2492,112.7508 AS18004 PT WIRELESS INDONESIA ( WIN ) Asia\/Jakarta",
+            "browser": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/147.0.0.0 Safari\/537.36"
+        },
+        "location": "2. Tangga Timur",
+        "class": "2-D"
+    }
+]
