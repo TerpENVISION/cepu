@@ -8,7 +8,7 @@ if ($_SESSION['role'] != 1) {
 include "../../db.php";
 
 
-$sql = "SELECT id, schoolname, class, subclass, locationimg FROM data WHERE id=1";
+$sql = "SELECT id, schoolname, class, subclass FROM data WHERE id=1";
 $result = $mysqli->query($sql);
 
 
@@ -22,7 +22,6 @@ if ($result->num_rows > 0) {
         // convert variable
         $schoolname = $row["schoolname"];
         $class = $row["class"];
-        $locationimg = $row["locationimg"];
     }
     // echo "</table>";
 } else {
@@ -65,12 +64,12 @@ $jummlahsubkelas = 26;
 </h1>
 <a href="./logout.php" class=" md-15">Log Out</a> 
 
-<div class="flex flex-row items-start">
+<div class="flex flex-col items-center justify-center w-screen m-2 md:flex-row ">
 
     <!-- data -->
-    <div class="w-120 flex flex-col items-center mt-5">
+    <div class="max-w-md flex flex-col items-center justify-center mt-5">
         <p class="font-medium text-[20pt]">Data Sebelumnya</p>
-        <table class="table">
+        <table class="table max-w-md">
             <!-- head -->
             <thead>
                 <tr>
