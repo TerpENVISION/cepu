@@ -1,18 +1,18 @@
 <?php
-    session_start();
-    if ($_SESSION['role'] != 2) {
-        header("location:../../login.php");
-    }
+session_start();
+if ($_SESSION['role'] != 2) {
+    header("location:../../login.php");
+}
 
-    include "../../db.php";
+include "../../db.php";
 
-    $sql = "SELECT id, datetime, name, class1, class2, location, ip, browser FROM log";
+$sql = "SELECT id, datetime, name, class1, class2, location, ip, browser FROM log";
 
-    $result = $mysqli->query($sql);
+$result = $mysqli->query($sql);
 
-    
 
-    if ($result->num_rows > 0) {
+
+if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
@@ -47,59 +47,109 @@ header("Refresh: 120; url=./");
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col items-center justify-center bg-background p-10">
-<h1 class="font-bold text-4xl">
-    <?php echo ucwords("Selamat datang, " . $_SESSION['username']); ?>
-</h1>
-<p class="font-medium text-[20pt]">Laporan</p>
+<body class="min-h-screen flex flex-col items-center justify-center bg-white p-10">
+    <h1 class="font-bold text-4xl">
+        <?php echo ucwords("Selamat datang, " . $_SESSION['username']); ?>
+    </h1>
+    <p class="font-medium text-[20pt]">Laporan</p>
+    <a href="./logout.php">Log Out</a>
 
-<table class="table w-[900px] overflow-scroll max-h-[60vh]">
-    <!-- head -->
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Tanggal Waktu</th>
-            <th>Nama</th>
-            <th>Kelas</th>
-            <th>Lokasi</th>
-            <th>Ip</th>
-            <th>Perangkat</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- row 1 -->
-        <?php 
-        while ($row = mysqli_fetch_assoc($result)) { 
-            
-            $locint = $row['location'];
-
-            $locsql = "SELECT location FROM location WHERE id = $locint";
-            $resultloc = $mysqli->query($locsql);
-
-
-            $char = 1;
-            $char = $row['class2'];
-            $subclass = chr(64 + $char);
-            
-            while ($rowloc = mysqli_fetch_assoc($resultloc)) { 
-
-        ?>
+    <table class="table w-[900px] overflow-scroll max-h-[60vh]">
+        <!-- head -->
+        <thead>
             <tr>
-                <td><?= $row['id']; ?></td>
-                <td><?= $row['datetime']; ?></td>
-                <td><?= $row['name']; ?></td>
-                <td><?= $row['class1'] . "-" . $subclass; ?></td>
-                <td><?= $row['location']. ". " .$rowloc['location']; ?></td>
-                <td><?= $row['ip']; ?></td>
-                <td><?= $row['browser']; ?></td>
+                <th>No</th>
+                <th>Tanggal Waktu</th>
+                <th>Nama</th>
+                <th>Kelas</th>
+                <th>Lokasi</th>
+                <th>Ip</th>
+                <th>Perangkat</th>
             </tr>
-        <?php } }?>
-    </tbody>
-</table>
+        </thead>
+        <tbody id="tableRes">
+
+        </tbody>
+    </table>
 
 
-<!-- daisyUI -->
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- daisyUI -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- data -->
+    <script>
+        let lastCount = 0;
+        let firstload = 1;
+        const newReport = new Audio('../../assets/audio/notification.mp3');
+        newReport.loop = false;
+
+        function bully() {
+            newReport.loop = true;
+            newReport.play();
+            Swal.fire({
+                theme: 'material-ui-light',
+                title: 'TERJADI BULLYING!',
+                icon: 'warning',
+                showCancelButton: false,
+                confirmButtonText: 'Tanggapi'
+
+            }).then((button) => {
+                if (button.isConfirmed) {
+                    Swal.fire({
+                        theme: 'material-ui-light',
+                        title: 'SUKSEK',
+                        icon: 'success'
+                    });
+                    newReport.loop = false;
+                    newReport.pause();           // Pauses the playback
+                    newReport.currentTime = 0;
+                }
+            });
+        }
+
+
+        function loadData() {
+            fetch('ajaxdata.php')
+                .then(res => res.json())
+                .then(data => {
+                    let html = '';
+
+                    data.forEach(row => {
+                        html += `
+                <tr>
+                    <td>${row.data.id}</td>
+                    <td>${row.data.datetime}</td>
+                    <td>${row.data.name}</td>
+                    <td>${row.class}</td>
+                    <td>${row.location}</td>
+                    <td>${row.data.ip}</td>
+                    <td>${row.data.browser}</td>
+                </tr>
+                    
+            `;
+
+                        document.getElementById("tableRes").innerHTML = html;
+
+                        if (data.length > lastCount) {
+                            if (firstload === 1) {
+                                firstload = 0;
+                            } else {
+                                bully()
+                            }
+
+                        }
+                    lastCount = data.length;
+
+                    });
+
+                });
+        }
+
+        setInterval(loadData, 5000);
+
+        loadData();
+    </script>
 </body>
 
 </html>

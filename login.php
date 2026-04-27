@@ -1,3 +1,21 @@
+    <?php 
+        include './components/nav.php';
+        include "./db.php";
+
+        
+        $sql = "SELECT id, schoolname FROM data WHERE id=1";
+        $result = $mysqli->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $schoolname = $row["schoolname"];
+            }
+        } else {
+            echo "0 results";
+        }
+
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,12 +40,12 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center bg-background">
+<body class="min-h-screen flex flex-col items-center justify-center bg-white md:bg-background">
     <?php include './components/nav.php';?>
 
     <!-- LOGIN -->
-    <div class="w-300px min-h-50vh flex flex-col items-center justify-center bg-white rounded-sm p-10 shadow-[10px_7px_13px_2px_rgba(0,_0,_0,_0.1)]">
-        <h1 class="text-[24pt] font-bold">SMPN 17 MALANG</h1>
+    <div class="w-300px min-h-50vh flex flex-col items-center justify-center bg-white rounded-sm p-10 md:shadow-[10px_7px_13px_2px_rgba(0,_0,_0,_0.1)]">
+        <h1 class="text-[24pt] font-bold"><?php echo $schoolname; ?></h1>
         <h1 class="text-[20pt] font-semibold mb-3">Login</h1>
         <form action="exlogin.php" method="post" class="flex flex-col items-center gap-2 w-90 ">		
             <p>Username</p>

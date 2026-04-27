@@ -1,4 +1,4 @@
-<div class="navbar bg-cepuprim text-white shadow-sm fixed top-0">
+<div class="navbar bg-cepuprim text-white shadow-sm fixed top-0 z-10 h-35px p-1 overflow-hidden">
   <div class="flex-1">
     <a class="btn bg-cepusec text-white border-none text-xl text-shadow-md hover:bg-cepuhov shadow-none" href="./">CEPU</a>
   </div>

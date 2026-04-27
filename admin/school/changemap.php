@@ -19,7 +19,6 @@
     // }
     // echo "</table>";
 } else {
-    echo "0 results";
 }
 
 ?>
@@ -48,12 +47,12 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center bg-white"></body>
+<body class="min-h-screen flex flex-col items-center justify-center bg-white max-w-screen"></body>
     <div class="w-120 flex flex-col items-center mt-5">
         <p class="font-medium text-[20pt]">Daftar Lokasi</p>
         <a href="./" class=" mb-7">Kembali</a> 
-        <img src="../../assets/map/map.webp" alt="" style="max-height: 500px;">
-        <table class="table">
+        <img src="../../assets/map/map.webp" alt="" class="max-w-screen max-h-[500px]">
+        <table class="table overflow-scroll">
             <!-- head -->
             <thead>
                 <tr>
