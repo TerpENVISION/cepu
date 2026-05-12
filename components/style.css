@@ -1,0 +1,24 @@
+@theme {
+    --color-cepuprim: #2446CC;
+    --color-cepusec: #3657db;
+    --color-cepuhov: #1d39ad;
+}
+
+@font-face {
+    font-family: 'MinecraftLokal';
+    src: url('./mc.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-minecraft {
+    font-family: 'MinecraftLokal', sans-serif !important;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--color-cepusec);
+}

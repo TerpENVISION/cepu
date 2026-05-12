@@ -1,0 +1,7 @@
+# Connect Database
+DB_HOST=""
+DB=""
+DB_USER=""
+DB_PASS=""
+
+# 
