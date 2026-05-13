@@ -22,7 +22,7 @@
     }
     else {
         if ($mysqli->query($sql) === true) {
-            header("location:/");
+            header("location:done.php");
         } else {
         }
     }
