@@ -67,7 +67,7 @@
                 <p>&copy; 2026 <strong>TerpEN</strong>. Open Source for Schools. Visit Our Github Space.</p>
                 <p>Created by <a href="https://github.com/TerpENVISION" target="_blank" style="color: #ff4d4d;">TerpEN Team</a> for OPSI</p>
                 <p>Contact Us: 
-                    <a href="https://wa.me/62881036899823" style="color: #4ade80;">Lahnan</a> & 
+                    <a href="https://instagram.com/lahnan_adi" style="color: #4ade80;">Lahnan</a> & 
                     <a href="https://wa.me/6285649331755" style="color: #4ade80;">Josh</a>
                 </p>
             </div>
